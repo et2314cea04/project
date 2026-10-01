@@ -1,4 +1,4 @@
-# StudyPulse
+# StudyPulseBot
 
 Telegram-бот для трекинга учебных дедлайнов и привычек студентов.
 
