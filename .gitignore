@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE и ОС
+.idea/
+.vscode/
+.DS_Store
+
+# Секреты и локальные настройки
+.env
+*.sqlite3
