@@ -18,3 +18,5 @@ https://github.com/et2314cea04/project/wiki
   - `docs` — документация
   - `data` — данные
   - `tests` — тесты
+
+Лишняя строка
