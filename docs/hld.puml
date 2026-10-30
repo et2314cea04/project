@@ -1,0 +1,29 @@
+@startuml
+actor "Студент" as User
+actor "Администратор" as Admin
+cloud "Telegram Bot API" as TG
+cloud "Google Calendar API\n(планируется)" as GC
+
+rectangle "StudyPulse" {
+  component "Обработчик команд\n(handlers)" as H
+  component "Сервис дедлайнов" as DS
+  component "Сервис привычек" as HS
+  component "Планировщик напоминаний" as SCH
+  component "Сервис статистики" as ST
+  database "База данных\n(SQLite)" as DB
+}
+
+User --> TG
+Admin --> TG
+TG --> H : обновления (updates)
+H --> TG : ответы
+H --> DS
+H --> HS
+H --> ST
+SCH --> DS
+SCH --> TG : напоминания
+DS --> DB
+HS --> DB
+ST --> DB
+DS ..> GC : экспорт (Release-2)
+@enduml
