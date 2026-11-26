@@ -53,3 +53,14 @@ def parse_reminder_time(text):
         return datetime.strptime(text.strip(), "%H:%M").time()
     except ValueError:
         return None
+
+_timezones = {}
+_remind_times = {}
+
+
+def save_timezone(user_id, name):
+    _timezones[user_id] = name
+
+
+def save_remind_time(user_id, t):
+    _remind_times[user_id] = t
