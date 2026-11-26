@@ -6,6 +6,8 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from dotenv import load_dotenv
 
+from .deadlines_service import format_deadlines, get_deadlines
+
 load_dotenv()
 
 dp = Dispatcher()
@@ -24,6 +26,12 @@ async def cmd_help(message: Message):
         "/habits — привычки\n"
         "/stats — статистика"
     )
+
+
+@dp.message(Command("deadlines"))
+async def cmd_deadlines(message: Message):
+    deadlines = get_deadlines(message.from_user.id)
+    await message.answer(format_deadlines(deadlines))
 
 
 async def main():
