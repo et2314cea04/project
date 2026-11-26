@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from src.bot.deadlines_service import format_deadlines, parse_reminder_time, parse_timezone
 
 from src.bot.deadlines_service import format_deadlines  # поправьте под ваш стиль
 
@@ -22,3 +23,12 @@ def test_sorted_and_overdue_marked():
     text = format_deadlines(items, now=NOW)
     assert text.index("Прошлый") < text.index("Поздний")
     assert "(просрочен)" in text
+    
+def test_parse_timezone():
+    assert parse_timezone("Europe/Moscow") == "Europe/Moscow"
+    assert parse_timezone("Москва") is None
+
+
+def test_parse_reminder_time():
+    assert parse_reminder_time("09:30").hour == 9
+    assert parse_reminder_time("25:99") is None
