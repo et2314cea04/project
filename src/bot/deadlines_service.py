@@ -33,3 +33,23 @@ def format_deadlines(deadlines, now=None, tz_name="UTC"):
             line += " (просрочен)"
         lines.append(line)
     return "\n".join(lines)
+
+def parse_timezone(text):
+    """Возвращает название часового пояса или None, если оно неверное.
+
+    Пример: "Asia/Yekaterinburg"
+    """
+    name = text.strip()
+    try:
+        ZoneInfo(name)
+    except (ZoneInfoNotFoundError, ValueError):
+        return None
+    return name
+
+
+def parse_reminder_time(text):
+    """Из "09:30" делает время. Если формат неверный, возвращает None."""
+    try:
+        return datetime.strptime(text.strip(), "%H:%M").time()
+    except ValueError:
+        return None
